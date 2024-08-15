@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: todoapp-servicemonitor  # Give your ServiceMonitor a name
+  namespace: default      # Place the ServiceMonitor in the 'default' namespace
+  labels:
+    app: todoapp
+    release: prometheus   # Ensure this matches the serviceMonitorSelector in your Prometheus
+spec:
+  selector:
+    matchLabels:
+      app: todoapp
+  namespaceSelector:
+    matchNames:
+    - todoapp     # This label should match the labels on your service
+  endpoints:
+    - port: web           # The name of the port defined in your Service
+      path: /prometheus/metrics  # The path where your app exposes metrics
+      interval: 30s       # Scrape interval, adjust as needed
