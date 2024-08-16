@@ -3634,10 +3634,8 @@ prometheus:
 
     ## Namespaces to be selected for ServiceMonitor discovery.
     ##
-    # serviceMonitorNamespaceSelector:
-    #   matchNames:
-    #     - todoapp
-    #     - default
+    serviceMonitorNamespaceSelector:
+      any: true
     ## Example which selects ServiceMonitors in namespaces with label "prometheus" set to "somelabel"
     # serviceMonitorNamespaceSelector:
     #   matchLabels:
